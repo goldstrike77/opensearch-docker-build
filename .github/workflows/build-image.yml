@@ -21,5 +21,6 @@ jobs:
         id: extract_branch
       - name: Build and push Docker image
         run: |
+          wget https://artifacts.opensearch.org/releases/bundle/opensearch/${{ steps.extract_branch.outputs.branch }}/opensearch-${{ steps.extract_branch.outputs.branch }}-linux-x64.tar.gz
           docker build --build-arg VERSION=${{ steps.extract_branch.outputs.branch }} . --file Dockerfile --tag swr.cn-east-3.myhuaweicloud.com/docker-io/opensearch:${{ steps.extract_branch.outputs.branch }}
           docker push swr.cn-east-3.myhuaweicloud.com/docker-io/opensearch:${{ steps.extract_branch.outputs.branch }}

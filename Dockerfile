@@ -37,7 +37,9 @@ RUN groupadd -g $GID opensearch && \
 
 # Prepare working directory
 # Copy artifacts and configurations to corresponding directories
-COPY * $TEMP_DIR/
+COPY config/* $TEMP_DIR/
+COPY scripts/* $TEMP_DIR/
+COPY opensearch-$VERSION-linux-x64.tar.gz $TEMP_DIR/
 RUN ls -l $TEMP_DIR && \
     tar -xzpf /tmp/opensearch/opensearch-`uname -p`.tgz -C $OPENSEARCH_HOME --strip-components=1 && \
     MAJOR_VERSION_ENTRYPOINT=`echo $VERSION | cut -d. -f1` && \
