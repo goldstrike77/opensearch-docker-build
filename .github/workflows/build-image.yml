@@ -1,0 +1,18 @@
+name: Publish Image
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          registry: swr.cn-east-3.myhuaweicloud.com
+          username: ${{ secrets.GIT_USER }}
+          password: ${{ secrets.GIT_TOKEN }}
+      - name: Build and push Docker image
+        run: |
+          docker build --build-arg VERSION=${{ GITHUB_REF_NAME }} . --file Dockerfile --tag swr.cn-east-3.myhuaweicloud.com/docker-io/opensearch:${{ GITHUB_REF_NAME }}
+          docker push swr.cn-east-3.myhuaweicloud.com/docker-io/opensearch:${{ GITHUB_REF_NAME }}
