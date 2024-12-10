@@ -1,1 +1,1 @@
-# opensearch-docker-build
+## 用于构建 OpenSearch 2.x 自定义镜像并推送到容器镜像仓库.
