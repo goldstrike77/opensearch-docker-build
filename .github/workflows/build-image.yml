@@ -17,5 +17,5 @@ jobs:
           password: ${{ secrets.GIT_TOKEN }}
       - name: Build and push Docker image
         run: |
-          docker build --build-arg VERSION=${{ env.GITHUB_REF_NAME }} . --file Dockerfile --tag swr.cn-east-3.myhuaweicloud.com/docker-io/opensearch:${{ env.GITHUB_REF_NAME }}
-          docker push swr.cn-east-3.myhuaweicloud.com/docker-io/opensearch:${{ env.GITHUB_REF_NAME }}
+          docker build --build-arg VERSION=${{ env.GITHUB_HEAD_REF }} . --file Dockerfile --tag swr.cn-east-3.myhuaweicloud.com/docker-io/opensearch:${{ env.GITHUB_HEAD_REF }}
+          docker push swr.cn-east-3.myhuaweicloud.com/docker-io/opensearch:${{ env.GITHUB_HEAD_REF }}
